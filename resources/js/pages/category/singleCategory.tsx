@@ -1,7 +1,6 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
-import CategoryNav from './categoryNav';
 import { Input } from "../../components/ui/input"
 import { LoaderCircle } from 'lucide-react';
 const breadcrumbs: BreadcrumbItem[] = [
@@ -36,7 +35,7 @@ export default function Category({ category_data }: Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Category" />
-            <CategoryNav/>
+           
             <div className="flex w-full content-center justify-center">
                 <form onSubmit={handleSubmit} className="mb-4 flex flex-col items-center rounded px-8 pt-6 pb-8">
                     <label htmlFor="first_name" className="mb-2 block text-lg font-bold">

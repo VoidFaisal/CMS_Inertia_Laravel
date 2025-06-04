@@ -19,6 +19,10 @@ export interface NavItem {
     title: string;
     href: string;
     icon?: LucideIcon | null;
+    children?: {
+        title: string;
+        href: string;
+    }[];
     isActive?: boolean;
 }
 
@@ -41,3 +45,4 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+

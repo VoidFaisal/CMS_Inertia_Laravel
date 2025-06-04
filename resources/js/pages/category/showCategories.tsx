@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, useForm } from '@inertiajs/react';
-import CategoryNav from './categoryNav';
+import { Head, Link, router, useForm } from '@inertiajs/react';
+import ConfirmAlert from '@/components/confirm-alert';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,10 +25,10 @@ export default function ShowCategories({ data }:Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Categories" />
-            <CategoryNav/>
+          
             <div className="relative overflow-x-auto">
-                <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-                    <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-left text-sm  rtl:text-right ">
+                    <thead className=" uppercase ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Category name
@@ -39,13 +39,14 @@ export default function ShowCategories({ data }:Props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(category=>(<tr className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800" key={category.id}>
-                            <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white" >
+                        {data.map(category=>(<tr className="border-b border-gray-200" key={category.id}>
+                            <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap " >
                                 {category.name}
                             </th>
-                            <td className="px-6 py-4"><Link href={`category/${category.id}/edit`} className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'>Edit</Link>
-                            <Link href={`category/${category.id}`} method='delete' className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900' onClick={()=>confirm()}>Delete</Link></td>
-                            
+                            <td className=" flex px-6 py-4 gap-1"><Link href={`category/${category.id}/edit`}  className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus-visible:green-600 /20 mx-1 inline-flex items-center justify-center gap-2 rounded-md bg-green-700 px-6 text-sm font-medium whitespace-nowrap text-white shadow-xs transition-[color,box-shadow] outline-none hover:bg-green-800/90 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-green-800/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4">Edit</Link>
+                        
+                             <ConfirmAlert onConfirm={() => router.delete(`category/${category.id}`)} /></td>
+                           
                         </tr>)
                        )}
                          

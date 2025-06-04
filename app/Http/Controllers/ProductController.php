@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -35,9 +33,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $product_data = $request->validate([
             'name' => 'required',
-            'category_id'=>'required'
+            'category_id'=>'required',
+            'stock'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
         Product::create($product_data);
         return redirect('product/create');
@@ -66,7 +67,9 @@ class ProductController extends Controller
     {   
          $product_data = $request->validate([
             'name' => 'required',
-            'category_id'=>'required'
+            'category_id'=>'required',
+            'stock'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
        $product->update($product_data);
     }

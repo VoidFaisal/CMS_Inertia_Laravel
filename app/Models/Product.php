@@ -12,6 +12,20 @@ class Product extends Model
       protected $fillable = [
         'name',
         'category_id',
+        'stock',
+        'price',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    /**
+     * Get the invoice items for the product.
+     */
+    public function invoiceItems()
+    {
+        return $this->hasMany(InvoiceItems::class, 'product_id');
+    }
 
 }

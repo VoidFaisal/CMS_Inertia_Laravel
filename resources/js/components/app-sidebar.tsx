@@ -17,18 +17,32 @@ const mainNavItems: NavItem[] = [
         title: 'Invoice',
         href: '/invoice',
         icon: Receipt,
+        children: [
+    { title: 'All Invoices', href: '/invoice' },
+    { title: 'Create Invoice', href: '/invoice/create' },
+    { title: 'Estimate Invoice', href: '/invoice/estimate' },
+  ]
         
     },
     {
         title: 'Category',
         href: '/category',
         icon: SquareMenu,
+        children: [
+    { title: 'All Categories', href: '/category' },
+    { title: 'Add Category', href: '/category/create' },
+  ]
     },
     {
-        title: 'Product',
-        href: '/product',
-        icon: Barcode,
-    },
+  title: 'Product',
+  href: '/product',
+  icon: Barcode,
+  children: [
+    { title: 'All Product', href: '/product' },
+    { title: 'Add Product', href: '/product/create' },
+  ]
+}
+
 ];
 
 const footerNavItems: NavItem[] = [
